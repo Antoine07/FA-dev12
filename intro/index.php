@@ -5,6 +5,31 @@ class Car
 
     // variables de classe, attributs de la classe
     private $wheel = 4;
+    private $color = 'red';
+
+
+    public function __construct($wheel, $color)
+    {
+        var_dump($wheel);
+        var_dump($color);
+        die('constructor');
+    }
+
+    /**
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param string $color
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+    }
 
     // fonctions classes, les méthodes de votre classe
     public function getWheel()
@@ -29,7 +54,7 @@ class Car
 
 }
 
-$car1 = new Car;
+$car1 = new Car(3, 'yellow');
 
 //var_dump($car1->wheel);
 var_dump($car1->getWheel());
