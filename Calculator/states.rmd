@@ -1,0 +1,11 @@
+Exercice
+
+Vous implémentez une classe Calculator; cette dernière permet de réaliser dans le script courant les opérations suivantes: addition et multiplication.
+Cette classe possède une méthode permettant de réinitialiser les résultats.
+
+remarques vous devez organiser le code comme suit:
+
+phpObjet/
+	Cacultator/
+		Calculator.php
+		test.php
