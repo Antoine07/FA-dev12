@@ -5,26 +5,32 @@ class Calculator
 
     private $res = 0;
 
-    public function add($a, $b)
+    public function add(...$numbers)
     {
-        if (is_numeric($a) && is_numeric($b)) {
-            $this->res = $a + $b;
 
-            return;
+        foreach ($numbers as $number) {
+            if (!is_numeric($number)) {
+                die(sprintf('ce nombre non numerique: %s', $number));
+            }
+
+            $this->res += $number;
         }
 
-        die(sprintf('a %s, b %s bad values', $a, $b));
     }
 
-    public function mult($a, $b)
+    public function mult(...$a)
     {
-        if (is_numeric($a) && is_numeric($b)) {
-            $this->res = $a * $b;
 
-            return;
+        if ($this->res == 0) $this->res = 1;
+
+        foreach ($numbers as $number) {
+            if (!is_numeric($number)) {
+                die(sprintf('ce nombre non numerique: %s', $number));
+            }
+
+            $this->res *= $number;
         }
 
-        die(sprintf('a %s, b %s bad values', $a, $b));
     }
 
 
