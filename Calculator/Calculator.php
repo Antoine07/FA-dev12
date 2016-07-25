@@ -18,7 +18,7 @@ class Calculator
 
     }
 
-    public function mult(...$a)
+    public function mult(...$numbers)
     {
 
         if ($this->res == 0) $this->res = 1;
