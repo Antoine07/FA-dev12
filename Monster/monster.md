@@ -1,23 +1,3 @@
-Exercice
-
-Vous implémentez une classe Calculator; cette dernière permet de réaliser dans le script courant les opérations suivantes: addition et multiplication.
-Cette classe possède une méthode permettant de réinitialiser les résultats.
-
-remarques vous devez organiser le code comme suit:
-
-phpObjet/
-	Cacultator/
-		Calculator.php
-		test.php
-
-
-$apero = Apero::online()->get();
-
- public function scopeOnline($query)
-    {
-        return $query->where('status', '=', 'opened');
-    }
-
 
 
 Exercice objectif PDO
@@ -35,24 +15,6 @@ Faites une classe Monster avec les mêmes attributs que les champs de votre tabl
 Dans le fichier test.php vous créerez une section bootstrap pour définir les constantes de l'application
 
 Hydrater maintenant l'entité Monster (créez quelques monstres) à partir des données de la table monsters dans le fichier test.php.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

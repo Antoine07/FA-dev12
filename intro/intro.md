@@ -3,6 +3,6 @@ En utilisant le constructeur de la classe Car donner des valeurs aux variables d
 
 Le setter color devra vérifiera la validité des couleurs attribué à l'objet:
 
-yellow, red, green uniquement
+yellow, red, green, uniquement
 
 
