@@ -1,16 +1,17 @@
 # defined schema tables
 
+
 # data
 
-INSERT INTO `muppets` (name, life, rate) VALUES
-  ('Frozzie', 10, 'NULL'),
-  ('Frozzie', 10, 4),
-  ('Frozzie', 10, 6),
-  ('Frozzie', 10, 7),
-  ('Frozzie', 10, 8),
-  ('Kermit', 7, 5),
-  ('Kermit', 50, 6),
-  ('Kermit', 20, 8),
-  ('Kermit', 11, 'NULL'),
-  ('Kermit', 8, 2),
-  ('Kermit', 8, 3);
+INSERT INTO `muppets` (name, rate) VALUES
+  ('Frozzie',  'NULL'),
+  ('Frozzie',  4),
+  ('Frozzie',  6),
+  ('Frozzie',  7),
+  ('Frozzie',  8),
+  ('Kermit', 5),
+  ('Kermit',  6),
+  ('Kermit',  8),
+  ('Kermit',  'NULL'),
+  ('Kermit', 2),
+  ('Kermit', 3);
