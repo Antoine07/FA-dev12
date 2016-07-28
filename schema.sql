@@ -20,3 +20,5 @@ CREATE TABLE `users`(
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `users` (username, password) VALUES ('Tony', SHA1('Tony')), ('Antoine', SHA1('Antoine'));
+
+INSERT INTO `monsters` (name, `force`, life) VALUES ('keke', 10, 10);

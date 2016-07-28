@@ -102,7 +102,7 @@ class Monster
 
     public function speed()
     {
-        $s = max(($this->maxForce / $this->force) * $this->speed, 50);
+        return ($this->maxForce / $this->force) * $this->speed;
     }
 
 }

@@ -109,6 +109,21 @@ try{
 }
 
 
+/*--------------------------------*\
+*             prepare
+/*--------------------------------*/
+
+$prepare = $pdo->prepare('SELECT * FROM `users` WHERE username=? AND password=? ');
+
+$prepare->bindValue(1, "Antoine", PDO::PARAM_STR);
+$prepare->bindValue(2, sha1("Antoine"), PDO::PARAM_STR);
+
+$prepare->execute();
+
+
+var_dump($prepare->fetch());
+
+
 
 
 
