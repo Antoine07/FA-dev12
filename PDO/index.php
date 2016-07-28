@@ -1,5 +1,4 @@
 <?php
-
 // configuration
 $database = [
     'dns' => 'mysql:host=localhost;dbname=db_game',
@@ -53,21 +52,61 @@ $prepare->bindValue(1, 'kiki', PDO::PARAM_STR);
 $prepare->bindValue(2, 4, PDO::PARAM_INT);
 $prepare->bindValue(3, 4, PDO::PARAM_INT);
 
-$prepare->execute();
+//$prepare->execute();
 
 // parameters position place holder, valeur, type attendu par MySQL
 $prepare->bindValue(1, 'cyclope', PDO::PARAM_STR);
 $prepare->bindValue(2, 2, PDO::PARAM_INT);
 $prepare->bindValue(3, 2, PDO::PARAM_INT);
 
-$prepare->execute();
-
-
+//$prepare->execute();
 
 // injection
 
 
+// users table MySQL
 
+$username = "Tony'-- ";
+$password = 'blabla';
+
+$sql = sprintf("
+        SELECT *
+        FROM users
+        WHERE username='%s' AND password='%s'
+        ", $username, $password);
+
+//var_dump($sql);
+
+$stmt = $pdo->query($sql);
+
+echo "<h1>Connection réussi</h1>";
+var_dump($stmt->fetch());
+
+// protection injection
+
+$username = "Tony'-- ";
+$password = 'blabla';
+
+$sql = sprintf("
+        SELECT *
+        FROM users
+        WHERE username='%s' AND password='%s'
+        ", $pdo->quote($username), $pdo->quote($password));
+
+//var_dump($sql);
+
+try{
+
+    $stmt = $pdo->query($sql);
+
+    echo "<h1>Connection stoppée</h1>";
+    var_dump($stmt->fetch());
+
+
+}catch(PDOException $e)
+{
+    echo "<p>votre connexion a échouée</p>";
+}
 
 
 

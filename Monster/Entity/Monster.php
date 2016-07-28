@@ -8,6 +8,29 @@ class Monster
     private $name;
     private $life;
     private $force;
+    private $maxForce = 800;
+    private $speed = 100;
+
+    public function __construct($monster)
+    {
+
+        if (isset($monster->id)) {
+            $this->setId($monster->id);
+        }
+
+        if (isset($monster->name)) {
+            $this->setName($monster->name);
+        }
+
+        if (isset($monster->force)) {
+            $this->setForce($monster->force);
+        }
+
+        if (isset($monster->life)) {
+            $this->setLife($monster->life);
+        }
+
+    }
 
     /**
      * @return mixed
@@ -22,7 +45,7 @@ class Monster
      */
     public function setId($id)
     {
-        $this->id = $id;
+        $this->id = (int)$id;
     }
 
     /**
@@ -38,7 +61,7 @@ class Monster
      */
     public function setName($name)
     {
-        $this->name = $name;
+        $this->name = (string)$name;
     }
 
     /**
@@ -54,7 +77,9 @@ class Monster
      */
     public function setLife($life)
     {
-        $this->life = $life;
+        if ($life >= 0 && $life < 101) {
+            $this->life = $life;
+        }
     }
 
     /**
@@ -70,9 +95,14 @@ class Monster
      */
     public function setForce($force)
     {
-        $this->force = $force;
+        if ($force >= 0 && $force < 801) {
+            $this->force = $force;
+        }
     }
 
-    
+    public function speed()
+    {
+        $s = max(($this->maxForce / $this->force) * $this->speed, 50);
+    }
 
 }

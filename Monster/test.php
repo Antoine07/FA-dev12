@@ -16,13 +16,13 @@ $pdo = $connect->getPDO(); // instance de PDO
 $stmt = $pdo->query('SELECT * FROM monsters');
 
 $Monsters = [];
-
-var_dump($stmt);
-
 foreach($stmt as $monster)
 {
-    var_dump($monster);
     // pusher les monsters objet dans le tableau $Monsters
     $Monsters[] = new Monster($monster);
 }
+
+var_dump($Monsters);
+
+
 
