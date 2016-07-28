@@ -12,6 +12,6 @@ INSERT INTO `muppets` (name, rate) VALUES
   ('Kermit', 5),
   ('Kermit',  6),
   ('Kermit',  8),
-  ('Kermit',  'NULL'),
+  ('Kermit',  null),
   ('Kermit', 2),
   ('Kermit', 3);
