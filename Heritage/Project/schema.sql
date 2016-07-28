@@ -4,7 +4,7 @@
 # data
 
 INSERT INTO `muppets` (name, rate) VALUES
-  ('Frozzie',  'NULL'),
+  ('Frozzie',  null),
   ('Frozzie',  4),
   ('Frozzie',  6),
   ('Frozzie',  7),
