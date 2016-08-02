@@ -1,5 +1,16 @@
 # defined schema tables
 
+DROP DATABASE IF EXISTS `db_theater`;
+CREATE DATABASE `db_theater` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+use `db_theater`;
+
+CREATE TABLE `muppets` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `rate` SMALLINT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 # data
 

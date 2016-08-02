@@ -1,6 +1,6 @@
 <?php
 
-class Fozzie extends Monster
+class Frozzie extends Monster
 {
     protected $type = 'Frozzie';
 
