@@ -56,7 +56,7 @@ function $http(url) {
 
 let url = 'https://api.github.com/repos/Antoine07/FA-dev12';
 let params = {
-    'access_token': 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+    'access_token': 'xxxxxx...'
 
 };
 
