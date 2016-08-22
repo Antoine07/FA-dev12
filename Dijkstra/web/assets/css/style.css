@@ -1,0 +1,5 @@
+.graph {
+    display: flex;  flex-wrap: wrap; flex-direction: row;
+}
+.graph .column{ height: 30px; width: 30px; margin: 10px; }
+.node{background-color: aqua;}

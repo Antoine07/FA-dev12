@@ -13,6 +13,12 @@ class File implements Observer
     {
         $this->splFile = new \SplFileObject($fileName, $option);
     }
+
+    /**
+     * updated insert ou met à jour (update) la notification en utilisant la methode get du sujet
+     *
+     * @param Subject $subject
+     */
     public function updated(Subject $subject)
     {
        $this->splFile->fwrite($subject->get());

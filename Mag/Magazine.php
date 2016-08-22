@@ -37,7 +37,7 @@ class Magazine implements Subject
 
         $this->pdo->query($sql);
 
-        $this->notify();
+        $this->notify(); // notifier aux observers que la creation d'un mag est faite
     }
 
 
@@ -64,6 +64,8 @@ class Magazine implements Subject
     }
 
     /**
+     * get method dans le contrat Subject utilisee par les Observers dans le Pattern
+     *
      * @return datetime Y-m-d H:i:s
      */
     public function get()
@@ -74,6 +76,8 @@ class Magazine implements Subject
 
     public function notify()
     {
+        // appeler la methode updated des observers en passant l'objet sujet lui-meme
+        // les observers feront par la suite leur travail a partir de la methode get du Suject
         foreach ($this->observers as $observer) $observer->updated($this);
 
     }
