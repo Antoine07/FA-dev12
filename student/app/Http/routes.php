@@ -24,10 +24,12 @@ Route::get('/posts', function () {
     // return view('welcome');
 });
 // passer un paramètre variable dans l'uri 
-Route::get('/post/{id}', function ($id) {
+/*Route::get('/post/{id}', function ($id) {
     return "post: $id";
     // return view('welcome');
-});
+});*/
+
+Route::get('/post/{id}', 'FrontController@show');
 
 // passer un paramètre variable dans l'uri 
 Route::get('/category/{title}/{id}', function ($title, $id) {

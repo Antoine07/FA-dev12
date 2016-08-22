@@ -6,11 +6,10 @@
 </head>
 <body>
 <h1>Listes des posts</h1>
-<?php if(!empty($posts)) : ?>
+<?php if(!empty($post)) : ?>
 <ul>
-<?php foreach($posts as $post): ?>
-    <li><?php echo $post->title ?></li>
-<?php endforeach; ?>
+<li><?php echo $post->title ?></li>
+
 </ul>
 <?php else: ?>
     <p>Désolé par d'article pour l'instant</p>
