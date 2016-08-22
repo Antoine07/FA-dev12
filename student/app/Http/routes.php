@@ -11,10 +11,13 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return "hello laravel";
    // return view('welcome');
-});
+});*/
+
+Route::get('/', 'FrontController@index');
+
 // une autre route
 Route::get('/posts', function () {
     return "hello posts";
