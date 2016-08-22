@@ -25,3 +25,10 @@ Route::get('/post/{id}', function ($id) {
     return "post: $id";
     // return view('welcome');
 });
+
+// passer un paramètre variable dans l'uri 
+Route::get('/category/{title}/{id}', function ($title, $id) {
+    return "titre de la catégorie: $title, et id de la category: $id";
+    // return view('welcome');
+});
+
