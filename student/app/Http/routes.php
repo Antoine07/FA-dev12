@@ -38,8 +38,9 @@ Route::get('/category/{title}/{id}', function ($title, $id) {
 Route::get('test', function () {
     $posts = [['title' => 'php7'], ['title' => 'mysql']];
 
-    extract(['data' => $posts]);
-
+    extract(['data' => $posts, 'foo' => 125, 'bar' => 100]);
+    var_dump($foo);
+    var_dump($bar);
     dd($data);
 
 });
