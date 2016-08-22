@@ -35,3 +35,13 @@ Route::get('/category/{title}/{id}', function ($title, $id) {
     // return view('welcome');
 });
 
+Route::get('test', function () {
+    $posts = [['title' => 'php7'], ['title' => 'mysql']];
+
+    extract(['data' => $posts]);
+
+    dd($data);
+
+});
+
+

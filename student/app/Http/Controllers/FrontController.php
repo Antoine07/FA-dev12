@@ -10,6 +10,8 @@ class FrontController extends Controller
 {
     public function index()
     {
-        return "all posts";
+        $posts = [['title' => 'php7', 'title' => 'mysql']];
+
+        return view('home', ['posts' => $posts]);
     }
 }
