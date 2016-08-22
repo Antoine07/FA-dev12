@@ -17,6 +17,11 @@ Route::get('/', function () {
 });
 
 Route::get('/posts', function () {
-    return "hello laravel";
+    return "hello posts";
+    // return view('welcome');
+});
+
+Route::get('/post/{id}', function ($id) {
+    return "post: $id";
     // return view('welcome');
 });
