@@ -27,3 +27,14 @@ $factory->define(App\Student::class, function (Faker\Generator $faker) {
         'address' => $faker->address
     ];
 });
+
+$factory->define(App\Post::class, function (Faker\Generator $faker) {
+    return [
+        'category_id' => (rand(0,1))? rand(1,2) : NULL,
+        'title' => $faker->name,
+        'content' => $faker->safeEmail,
+        'author' => $faker->name,
+        'status' =>(rand(0,1))? 'published' : ( (rand(0,1))? 'unpublished' : 'draft'),
+        'published_at' =>$faker->dateTime,
+    ];
+});

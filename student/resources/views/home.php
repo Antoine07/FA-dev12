@@ -9,7 +9,10 @@
 <?php if(!empty($posts)) : ?>
     <ul>
         <?php foreach($posts as $post): ?>
-            <li><a href="<?php echo url('post', [$post->id]) ?>"><?php echo $post->title ?></a></li>
+            <li><a href="<?php echo url('post', [$post->id]) ?>"><?php echo $post->title ?></a>
+                <img src="<?php echo url('images', [$post->thumbnail]); ?>" alt="">
+                <p><?php echo ($post->category)? $post->category->title: 'non catégorisé'; ?></p>
+            </li>
         <?php endforeach; ?>
     </ul>
 <?php else: ?>
@@ -18,7 +21,7 @@
 
 <?php if(!empty($students)) : ?>
     <ul>
-        <?php foreach($student as $student): ?>
+        <?php foreach($students as $student): ?>
             <li><a href="<?php echo url('student', [$student->id]) ?>"><?php echo $student->name ?></a></li>
         <?php endforeach; ?>
     </ul>
