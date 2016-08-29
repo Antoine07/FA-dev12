@@ -30,6 +30,11 @@ Route::get('/posts', function () {
 });*/
 
 Route::get('/post/{id}', 'FrontController@show');
+Route::get('/category/{id}', 'FrontController@showPostByCat');
+Route::get('/student/{id}', 'FrontController@showStudent');
+
+
+
 
 // passer un paramètre variable dans l'uri 
 Route::get('/category/{title}/{id}', function ($title, $id) {

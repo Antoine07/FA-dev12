@@ -1,0 +1,12 @@
+<?php
+
+return [
+//   E  A  B  C  D  S
+    [INFINITE, 3, 1, INFINITE, INFINITE, INFINITE], // E
+    [3, INFINITE, 1, 3, INFINITE,INFINITE], // A
+    [1, 1, INFINITE, 3, 5,INFINITE], // B
+    [INFINITE, 3, 3, INFINITE, 1,3], // C
+    [INFINITE, INFINITE, 5, 1, INFINITE,1], // D
+    [INFINITE, INFINITE, INFINITE, 3, 1,INFINITE], // S
+
+];

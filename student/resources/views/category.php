@@ -5,15 +5,7 @@
     <title>Document</title>
 </head>
 <body>
-<header>
-    <nav>
-        <a href="<?php echo url('category', [1]); ?>">PHP</a>
-        <a href="<?php echo url('category', [2]); ?>">MySQL</a>
-    </nav>
-</header>
-
-<h1>Listes des posts</h1>
-
+<h1>Vous vous trouvez dans: <?php echo $title; ?></h1>
 <?php if(!empty($posts)) : ?>
     <ul>
         <?php foreach($posts as $post): ?>
@@ -26,16 +18,5 @@
 <?php else: ?>
     <p>Désolé par d'article pour l'instant</p>
 <?php endif; ?>
-
-<?php if(!empty($students)) : ?>
-    <ul>
-        <?php foreach($students as $student): ?>
-            <li><a href="<?php echo url('student', [$student->id]) ?>"><?php echo $student->name ?></a></li>
-        <?php endforeach; ?>
-    </ul>
-<?php else: ?>
-    <p>Désolé par d'article pour l'instant</p>
-<?php endif; ?>
-
 </body>
 </html>
