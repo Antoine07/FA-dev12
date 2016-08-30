@@ -33,7 +33,7 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
         'category_id' => (rand(0,1))? rand(1,2) : NULL,
         'title' => $faker->name,
         'content' => $faker->safeEmail,
-        'author' => $faker->name,
+        'user_id' => (rand(1,0)==1)? rand(1,10) : NULL,
         'status' =>(rand(0,1))? 'published' : ( (rand(0,1))? 'unpublished' : 'draft'),
         'published_at' =>$faker->dateTime,
     ];

@@ -17,3 +17,9 @@ Un post a un auteur ou acun, et un auteur est associé à 0 à N post(s)
 des posts ayant des auteurs (posts et users)
 
 - Affichez dans les vues les noms des auteurs des posts
+
+#Exercice 
+ 
+ Affichez les mots clés sous chaque article, rendre cliquable ces mots clés; chaque lien, une fois cliqué, affichera les articles ayant rapport à ce mot clé.
+ 
+ tag.blade.php

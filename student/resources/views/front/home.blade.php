@@ -2,14 +2,18 @@
 
 @section('content')
 @if(!empty($posts))
-<ul>
+<ul class="post">
     @foreach($posts as $post)
         <li>
             <a href="{{url('post', [$post->id])}}">{{$post->title}}</a>
             @if(!empty($post->thumbnail))
                 <img src="{{url('images', [$post->thumbnail])}}" alt="">
             @endif
-            <p>{{($post->category)? $post->category->title : 'non catégorisé'}}</p>
+            <p class="post__meta">{{($post->category)? $post->category->title : 'non catégorisé'}}
+                @if(!is_null($post->user))
+                   auteur: <a class="post__meta-user" href="{{url('user', [$post->user->id])}}">{{$post->user->name}}</a>
+                @endif
+            </p>
         </li>
     @endforeach
 </ul>

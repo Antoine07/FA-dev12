@@ -1,0 +1,22 @@
+{
+  "name": "Tony/Tony",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Antoine Lucsko",
+      "email": "antoine.lucsko@wanadoo.fr"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.0.0",
+    "symfony/yaml": "~3.0@dev"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "": "src/"
+    }
+  }
+}

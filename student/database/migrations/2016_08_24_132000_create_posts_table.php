@@ -16,11 +16,12 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('title', 100);
             $table->unsignedInteger('category_id')->nullable();
+            $table->unsignedInteger('user_id')->nullable();
             $table->text('content');
-            $table->string('author', 100);
             $table->dateTime('published_at');
             $table->enum('status', ['published', 'unpublished', 'draft']);
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('SET NULL');;
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('SET NULL');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Post;
 use App\Student;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -52,5 +53,16 @@ class FrontController extends Controller
         ]);
 
     }
+
+    public function showPostByUser($id)
+    {
+        $user = User::find($id); // Un objet de type User
+        $name = $user->name; // nom de l'utilisateur string
+        $posts = $user->posts; // oneToMany
+
+        return view('front.user.index', compact('posts', 'name'));
+    }
+
+
 
 }
