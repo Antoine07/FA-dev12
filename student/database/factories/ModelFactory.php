@@ -29,9 +29,12 @@ $factory->define(App\Student::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Post::class, function (Faker\Generator $faker) {
+    $title = $faker->text(10);
+
     return [
         'category_id' => (rand(0,1))? rand(1,2) : NULL,
-        'title' => $faker->name,
+        'title' => $title,
+        'slug' => str_slug($title),
         'content' => $faker->safeEmail,
         'user_id' => (rand(1,0)==1)? rand(1,10) : NULL,
         'status' =>(rand(0,1))? 'published' : ( (rand(0,1))? 'unpublished' : 'draft'),

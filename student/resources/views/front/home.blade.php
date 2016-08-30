@@ -1,11 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
-@if(!empty($posts))
+@if(count($posts)>0)
 <ul class="post">
     @foreach($posts as $post)
         <li>
-            <a href="{{url('post', [$post->id])}}">{{$post->title}}</a>
+            <a href="{{url('post', [$post->id, $post->slug])}}">{{$post->title}}</a>
             @if(!empty($post->thumbnail))
                 <img src="{{url('images', [$post->thumbnail])}}" alt="">
             @endif
@@ -14,6 +14,13 @@
                    auteur: <a class="post__meta-user" href="{{url('user', [$post->user->id])}}">{{$post->user->name}}</a>
                 @endif
             </p>
+            <ul>
+            @forelse($post->tags as $tag)
+                <li><a href="{{url('tag', $tag->id)}}">{{$tag->name}}</a></li>
+            @empty
+                <li>pas de mot clé</li>
+            @endforelse
+            </ul>
         </li>
     @endforeach
 </ul>
@@ -24,11 +31,14 @@
 
 @section('sidebar')
 @parent
-@if(!empty($students))
+@if(count($students)>0)
     <ul>
         @foreach($students as $student)
             <li>
                 <a href="{{url('student', [$student->id])}}">{{$student->name}}</a>
+                @if(count($student->avatar)>0)
+                    <img src="{{url('avatars', [$student->avatar->uri])}}" alt="">
+                @endif
             </li>
         @endforeach
     </ul>

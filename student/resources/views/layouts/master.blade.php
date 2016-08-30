@@ -7,6 +7,7 @@
 <body>
 <header>
     <nav>
+        <a href="{{ url('') }}">Home</a>
         <a href="{{ url('category', [1]) }}">PHP</a>
         <a href="{{ url('category', [2]) }}">MySQL</a>
     </nav>

@@ -40,6 +40,7 @@
     <body>
         <div class="container">
             <div class="content">
+                <h1>404</h1>
                 <div class="title">Be right back.</div>
             </div>
         </div>

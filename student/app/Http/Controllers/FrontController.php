@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Post;
 use App\Student;
+use App\Tag;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -43,14 +44,12 @@ class FrontController extends Controller
 
     public function showPostByCat($id)
     {
+
         $category = Category::find($id);
         $title = $category->title;
         $posts = $category->posts;
 
-        return view('category', [
-            'title' => $title,
-            'posts' => $posts
-        ]);
+        return view('front.category', compact('title', 'posts'));
 
     }
 
@@ -63,6 +62,13 @@ class FrontController extends Controller
         return view('front.user.index', compact('posts', 'name'));
     }
 
+    public function showPostByTag($id)
+    {
+        $tag = Tag::find($id);
+        $name = $tag->name;
+        $posts = $tag->posts;
 
+        return view('front.tag', compact('name', 'posts'));
+    }
 
 }

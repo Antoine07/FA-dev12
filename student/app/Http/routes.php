@@ -1,15 +1,7 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
+Route::pattern('id', '[1-9][0-9]*'); // * 0, N
+Route::pattern('slug', '[a-zA-Z\-]+');   // + 1, N
 
 /*Route::get('/', function () {
     return "hello laravel";
@@ -29,10 +21,11 @@ Route::get('/posts', function () {
     // return view('welcome');
 });*/
 
-Route::get('/post/{id}', 'FrontController@show');
+Route::get('/post/{id}/{slug?}', 'FrontController@show');
 Route::get('/category/{id}', 'FrontController@showPostByCat');
 Route::get('/student/{id}', 'FrontController@showStudent');
 Route::get('/user/{id}', 'FrontController@showPostByUser');
+Route::get('/tag/{id}', 'FrontController@showPostByTag');
 
 // passer un paramètre variable dans l'uri 
 Route::get('/category/{title}/{id}', function ($title, $id) {

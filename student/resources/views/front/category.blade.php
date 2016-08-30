@@ -3,6 +3,7 @@
 @section('content')
 @if(count($posts)>0)
 <ul class="post">
+    <h2>Catégorie: {{$title}} </h2>
     @foreach($posts as $post)
         <li>
             <a href="{{url('post', [$post->id, $post->slug])}}">{{$post->title}}</a>
