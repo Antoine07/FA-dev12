@@ -22,7 +22,7 @@ Route::get('/posts', function () {
 });*/
 
 Route::get('/post/{id}/{slug?}', 'FrontController@show');
-Route::get('/category/{id}', 'FrontController@showPostByCat');
+Route::get('/category/{id}/{slug?}', 'FrontController@showPostByCat');
 Route::get('/student/{id}', 'FrontController@showStudent');
 Route::get('/user/{id}', 'FrontController@showPostByUser');
 Route::get('/tag/{id}', 'FrontController@showPostByTag');

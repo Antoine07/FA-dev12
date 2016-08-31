@@ -23,3 +23,28 @@ des posts ayant des auteurs (posts et users)
  Affichez les mots clés sous chaque article, rendre cliquable ces mots clés; chaque lien, une fois cliqué, affichera les articles ayant rapport à ce mot clé.
  
  tag.blade.php
+ 
+ #vhost
+ ```bash
+<VirtualHost *:80>
+    ServerAdmin webmaster@dummy-host2.example.com
+    DocumentRoot "C:/xampp/htdocs"
+    ServerName localhost
+    ErrorLog "logs/localhost.com-error.log"
+    CustomLog "logs/localhost.com-access.log" common
+</VirtualHost>
+<VirtualHost *:80>
+ ServerAdmin tony@tony.fr
+ DocumentRoot "C:/xampp/htdocs/student/public"
+ ServerName student.local
+ 
+ <Directory "C:/xampp/htdocs/student/public">
+     Options Includes FollowSymLinks MultiViews
+     AllowOverride All
+     Require all granted
+ </Directory>
+
+</VirtualHost>
+ ```
+ 
+ 

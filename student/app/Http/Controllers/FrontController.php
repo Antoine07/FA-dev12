@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Post;
-use App\Student;
 use App\Tag;
 use App\User;
-use Illuminate\Http\Request;
-
+use App\Post;
+use App\Student;
+use App\Category;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
+
     public function index()
     {
         //$posts = [['title' => 'php7'],['title' => 'mysql']];

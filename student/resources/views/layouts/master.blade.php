@@ -6,11 +6,7 @@
 </head>
 <body>
 <header>
-    <nav>
-        <a href="{{ url('') }}">Home</a>
-        <a href="{{ url('category', [1]) }}">PHP</a>
-        <a href="{{ url('category', [2]) }}">MySQL</a>
-    </nav>
+   @include('partials.menu')
 </header>
 <div class="main">
     <div class="grid-2">

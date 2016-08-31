@@ -1,2 +1,18 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "knacss/knacss";
 
+$color: red;
+$color-hover: green;
+
+nav{
+  li{
+    a{
+      color: $color;
+      cursor: pointer;
+      &:hover{
+        color: $color-hover;
+      }
+    }
+  }
+}
+
+body{ color: $color; }
