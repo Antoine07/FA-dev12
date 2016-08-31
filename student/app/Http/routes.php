@@ -27,6 +27,10 @@ Route::get('/student/{id}', 'FrontController@showStudent');
 Route::get('/user/{id}', 'FrontController@showPostByUser');
 Route::get('/tag/{id}', 'FrontController@showPostByTag');
 
+Route::resource('admin/post', 'PostController');
+
+
+
 // passer un paramètre variable dans l'uri 
 Route::get('/category/{title}/{id}', function ($title, $id) {
     return "titre de la catégorie: $title, et id de la category: $id";
