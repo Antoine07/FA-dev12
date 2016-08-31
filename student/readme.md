@@ -57,6 +57,12 @@ des posts ayant des auteurs (posts et users)
  
  Pour afficher votre formulaire utiliser l'URI admin/post/create, c'est lorsque vous allez appuyez sur le submit de ce formulaire, que vous enverrez les données POST à l'URI admin/post (méthode store)
  
+ Dans votre formulaire, il vous faudra ajouter un token de sécurité, l'application doit être sûr que c'est bien elle qui vous a envoyé le formulaire
+ 
+ <form>
+ {{crsf_field()}}
+ </form>
+ 
  admin/post
  
      index.blade.php
