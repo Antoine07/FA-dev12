@@ -49,8 +49,6 @@ des posts ayant des auteurs (posts et users)
  
  # Exercice
  
- Exercice
- 
  pour les resources (vues) faites un dossier admin et un sous dossier post
  
  La vue create.blade.php dans laquelle vous créez un formulaire (un champ title) qui se connectera avec le verb POST à l'URI admin/post. Rappelons que cette action vous permettra de récupérer les données POST pour créer une nouvelle ligne dans la table posts (plus tard)

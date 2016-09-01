@@ -27,8 +27,10 @@ Route::get('/student/{id}', 'FrontController@showStudent');
 Route::get('/user/{id}', 'FrontController@showPostByUser');
 Route::get('/tag/{id}', 'FrontController@showPostByTag');
 
-Route::resource('admin/post', 'PostController');
+Route::any('login','LoginController@login');
+Route::get('logout', 'LoginController@logout');
 
+Route::resource('admin/post', 'PostController');
 
 
 // passer un paramètre variable dans l'uri 
