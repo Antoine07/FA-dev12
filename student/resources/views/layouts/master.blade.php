@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Student App</title>
+    @include('partials.scripts')
 </head>
 <body>
 <header>

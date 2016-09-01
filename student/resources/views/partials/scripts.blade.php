@@ -1,0 +1,1 @@
+<link rel="stylesheet" href="{{url('assets/css/app.min.css')}}" media="all">

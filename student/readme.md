@@ -66,3 +66,29 @@ des posts ayant des auteurs (posts et users)
      index.blade.php
      create.blade.php
  
+ # Exercice  Correction
+
+ function check_radio($name, $value, $default=null)
+ {
+     $old = old($name); // récupère la valeur du champ si déjà envoyé elle est != de empty
+ 
+     if (!is_null($default) && empty($old)) return 'checked';
+ 
+     if (old($name) == $value) return 'checked';
+ }
+ 
+ 
+ Utilisations
+ check_radio('status', 'unpublished', 'checked');  // préselectionne
+ check_radio('status', 'unpublished');
+ 
+ 
+ Ajoutez maintenant, la possibilité dans la création d'une ressource post, d'associer des tags. 
+ Clairement, ici vous devez mettre en place un choix multiples de tags.
+ 
+ 
+ $post->attach($request->tags);  // $request->tags récupère dans votre formulaire les données input type tags
+ 
+ $request->input('tags') équivalent à $request->tags 
+ 
+ select multiple name="tags[]"  dans votre controleur vous récupèrez un tableau $request->tags

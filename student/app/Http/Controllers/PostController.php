@@ -48,6 +48,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request, [
+            'title' => 'required|max:100',
+            'content' => 'required',
+            'category_id' => 'integer',
+            'user_id' => 'integer',
+            'status' => 'in:published,unpublished,draft',
+            'published_at' => 'date',
+        ]);
+
         Post::create($request->all());
 
         return redirect('admin/post')->with('message', 'ok');
