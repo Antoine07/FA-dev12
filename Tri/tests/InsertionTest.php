@@ -16,7 +16,7 @@ class InsertionTest extends PHPUnit_Framework_TestCase
 
     public function testList()
     {
-        $list = [1, 5, 45, 7, 21, 3, 568, 2, 4,];
+        $list = [1, 5, 0, 45, 7];
 
         $ordList = $this->insertion->run($list);
 
