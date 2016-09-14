@@ -20,7 +20,6 @@ let path = {
 };
 
 gulp.task('task-sass', function () {
-
     return gulp.src([ path.resources.sass + '/app.scss'])
         .pipe(sass()) // compilation
         .pipe(minify()) // minifycation
@@ -29,23 +28,7 @@ gulp.task('task-sass', function () {
 });
 
 gulp.task('watch',  function(){
-
     gulp.watch(path.sass, ['task-sass']);
-
 });
 
 gulp.task('default', ['watch']);
-
-
-
-
-
-
-
-
-
-
-
-
-
-

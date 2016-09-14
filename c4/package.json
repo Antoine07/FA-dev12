@@ -1,0 +1,25 @@
+{
+  "name": "c4",
+  "version": "1.0.0",
+  "author": "Tony",
+  "description": "Simulation led power 4",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "nodemon": "^1.10.2"
+  },
+  "devDependencies": {
+    "babelify": "^7.3.0",
+    "gulp": "^3.9.1",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-typescript": "^2.13.6",
+    "gulp-uglify": "^2.0.0"
+  }
+}
