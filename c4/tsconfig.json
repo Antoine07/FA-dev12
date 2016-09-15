@@ -1,9 +1,0 @@
-{
-  "files": [
-    "./resources/app/app.ts"
-  ],
-  "compilerOptions": {
-    "noImplicitAny": true,
-    "target": "es6"
-  }
-}

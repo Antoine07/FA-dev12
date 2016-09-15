@@ -1,0 +1,11 @@
+{
+  "files": [
+    "./app/app.ts",
+    "./app/src/Game.ts"
+  ],
+  "compilerOptions": {
+    "pretty": true,
+    "noImplicitAny": true,
+    "target": "es5"
+  }
+}

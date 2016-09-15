@@ -3,7 +3,8 @@ let gulp = require('gulp'),
     sass = require('gulp-sass'),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify'),
-    babel = require('babelify')
+    ts = require('gulp-typescript'),
+    tsProject = ts.createProject('./resources/ts/tsconfig.json')
 
 let path = {
     'public': {
@@ -12,10 +13,11 @@ let path = {
     },
     'resources': {
         'sass': './resources/sass',
-        'js': './resources/js'
+        'ts': './resources/ts'
     },
     'sass': "./resources/sass/**/*.scss",
-    'js': "./resources/app/**/*.js"
+    'ts': "./resources/ts/app/**/*.ts"
+
 }
 
 gulp.task('sass', function () {
@@ -28,20 +30,22 @@ gulp.task('sass', function () {
         .pipe(gulp.dest(path.public.css))
 });
 
-gulp.task('js', function () {
-
-    return gulp.src(path.resources.js + '/app.js')
-        /*.pipe(uglify())*/
-        //.transform(babel,{presets: ["es2015"]})
-        //.bundle()
+gulp.task("ts", function () {
+    return tsProject.src(path.resources.ts + '/app.ts')
+        .pipe(ts(tsProject))
         //.pipe(uglify())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(path.public.js))
-});
+        /*.pipe(rename({suffix: '.min'}))*/
+        .js.pipe(gulp.dest(path.resources.ts + '/build'))
+})
 
-gulp.task('watch',['sass', 'js'],  function(){
+gulp.task('copy', function () {
+    return gulp.src(path.resources.ts + '/build/**/*.js')
+    .pipe(gulp.dest(path.public.js + '/app'))
+})
+
+gulp.task('watch',['sass', 'ts'],  function(){
     gulp.watch(path.sass, ['sass'])
-    gulp.watch(path.js, ['js'])
+    gulp.watch(path.ts, ['ts', 'copy'])
 });
 
 gulp.task('default', ['watch'])
