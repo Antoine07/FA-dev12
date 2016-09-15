@@ -1,7 +1,8 @@
 require.config({
 
     paths: {
-        jquery: 'lib/jquery'
+        jquery: 'lib/jquery',
+        jqueryui: 'lib/jqueryui.min'
     }
 })
 
@@ -9,7 +10,7 @@ require.config({
 require(['jquery', 'src/Game'], function ($, Game) {
 
     $(()=> {
-       Game.start()
+       Game.run()
     })
 
 })
