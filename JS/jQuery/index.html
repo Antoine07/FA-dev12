@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Title</title>
+</head>
+<body>
+<ul>
+    <li>
+        <a href="#">A1</a>
+    </li>
+    <li>
+        <a href="#">A2</a>
+    </li>
+    <li>
+        <a href="#">A3</a>
+    </li>
+</ul>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+    $("li").animate({ backgroundColor: 'red' }, {
+        duration: 1000,
+        step: function(now, fx){
+            fx.css({ backgroundColor: 'green' })
+        }
+    });
+</script>
+</body>
+</html>

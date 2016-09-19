@@ -1,5 +1,4 @@
 require.config({
-
     paths: {
         jquery: 'lib/jquery',
         jqueryui: 'lib/jqueryui.min'

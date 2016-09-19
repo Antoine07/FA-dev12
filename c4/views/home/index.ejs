@@ -1,0 +1,37 @@
+<% include ../partials/header %>
+<div class="container home">
+    <div class="row home__context">
+     <div class="col s12 m12">
+        <h2 class="header">Puissance 4</h2>
+        <p class="caption">Vous devez être inscrit avant de commencer le jeu</p>
+     </div>
+    </div>
+    <div class="row home__inscription">
+          <div class="col s12 m12">
+           <div class="row">
+              <form class="col s12" action="/inscription" method="post">
+                <div class="row">
+                  <div class="input-field col s12 m6">
+                    <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+                    <label for="first_name">First Name</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12 m6">
+                    <input id="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12 m6">
+                     <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                       <i class="material-icons right">send</i>
+                     </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+    </div>
+</div>
+<% include ../partials/footer %>

@@ -14,10 +14,14 @@ define(['jquery', 'jqueryui', 'src/Config'], function ($, ui, Config) {
             this.light(classBtnLed, color)
         }
 
-        light(classBtn, color, dyn = false, max = 0) {
+        light(classBtn, color, dyn = false, max = 0, sens) {
             let p = []
-            let colorIni = '#ffd600'
-            $(classBtn).each(function (index) {
+            let colorIni = Config.color
+            $.fn.reverse = [].reverse;
+            let led = $(classBtn)
+            if (sens < 0) led = led.reverse()
+
+            led.each(function (index) {
                 if (index <= max || !dyn) {
                     let elem = $(this)
                     p.push(new Promise((resolve, reject) => {
@@ -34,19 +38,16 @@ define(['jquery', 'jqueryui', 'src/Config'], function ($, ui, Config) {
 
                 if (dyn && max != index) {
                     p.push(new Promise((resolve, reject) => {
-
                         let elem = $(this)
-
                         setTimeout(function () {
                             resolve($(elem).css('backgroundColor', colorIni))
                         }, (index * 500) + 1000);
                     }))
                 }
-
             })
 
             Promise.all(p).then(() => {
-                if($('.play').hasClass('hide'))
+                if ($('.play').hasClass('hide'))
                     $('.play').removeClass('hide')
 
             }, (raison) => {
@@ -60,7 +61,7 @@ define(['jquery', 'jqueryui', 'src/Config'], function ($, ui, Config) {
             let classBtnLed = Config.classBtnLed
             let self = this
 
-            $('.play').draggable({
+            $('.play__btn').draggable({
                 axis: 'y',
                 revert: true,
                 containment: '.play',
@@ -71,24 +72,27 @@ define(['jquery', 'jqueryui', 'src/Config'], function ($, ui, Config) {
                     })
                 },
                 drag: function () {
-                    let offset = $(this).offset();
-                    this.posY = offset.top - parentPosY;
                 },
                 stop: function (e, u) {
+                    let max = self.getMax()
 
-                    let max = 0
+                    let classes = $(this).attr('class').split(" ")
+                    let sens = 1
 
-                    if (this.posY == 344) max = 5
-                    if (this.posY < 344 && this.posY > 210) max = 4
-                    if (this.posY < 210 && this.posY > 110) max = 3
-                    if (this.posY < 110 && this.posY > 10) max = 2
-                    if (this.posY < 10 && this.posY > 5) max = 1
-
-                    self.light(classBtnLed, 'red', true, max)
+                    for (let c of classes) {
+                        if (c == 'btn-right') {
+                            sens = -1
+                            break
+                        }
+                    }
+                    self.light(classBtnLed, 'red', true, max, sens)
                 }
             })
         }
 
+        getMax() {
+            return (Math.round(Math.random() * 10) % Config.nbLeds )
+        }
     }
 
     return new Game

@@ -1,3 +1,4 @@
-/**
- * Created by Antoine on 15/09/2016.
- */
+let sqlite3 = require('sqlite3').verbose(),
+    db = new sqlite3.Database('../game.db')
+
+exports.db = db
