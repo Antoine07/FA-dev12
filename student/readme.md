@@ -107,3 +107,8 @@ des posts ayant des auteurs (posts et users)
  Présentez ces posts dans un tableau, avec respectivement les champs suivants:
  
  statut | title | date de plublication | nom de la catégorie |  delete 
+ 
+ Exercice
+ Rendre cliquable les titres de vos articles, ces liens conduisent vers la page de l'édition de l'article (@edit)
+ 
+ - Ajoutez un bouton permettant la création d'un nouvel article (post) @create
