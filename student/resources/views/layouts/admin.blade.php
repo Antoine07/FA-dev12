@@ -6,7 +6,13 @@
 </head>
 <body>
 <header>
-    <a href="{{url('')}}">Accueil(retour)</a>
+    <nav>
+        <ul>
+            <li> <a href="{{url('')}}">Accueil(retour)</a></li>
+            <li><a href="{{url('admin', ['post'])}}">Admin des posts</a></li>
+        </ul>
+    </nav>
+   
 </header>
 <div class="main">
     <div class="grid-2">

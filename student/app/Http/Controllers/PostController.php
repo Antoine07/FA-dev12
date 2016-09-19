@@ -24,7 +24,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        return "index";
+        $posts = Post::all();
+
+        return view('admin.post.index', compact('posts'));
     }
 
     /**
@@ -110,9 +112,9 @@ class PostController extends Controller
             'published_at' => 'date',
         ]);
 
-       $post = Post::find($id);
+        $post = Post::find($id);
 
-       $post->update($request->all()) ;
+        $post->update($request->all());
 
         return redirect('admin/post')->with(['message' => 'success']);
     }
@@ -125,6 +127,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Post::destroy($id);
+
+        return redirect('admin/post')->with( ['message' => 'success delete']);
     }
 }
