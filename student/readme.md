@@ -92,3 +92,9 @@ des posts ayant des auteurs (posts et users)
  $request->input('tags') équivalent à $request->tags 
  
  select multiple name="tags[]"  dans votre controleur vous récupèrez un tableau $request->tags
+ 
+ # Exercice mise à jour d'un post
+ 
+ Implémentez le code de l'action update du controller PostController. Mettre en place la mise jour d'un post dans le CRUD.
+ 1/ admin/post/{1}/edit  connecter à PostController@edit method GET
+ 2/ admin/post/{1}  connecter à PostController@update method PUT
