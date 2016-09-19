@@ -83,7 +83,12 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        $categories = Category::lists('title', 'id');
+        $users = User::lists('name', 'id');
+
+        return view('admin.post.edit', compact('post', 'categories', 'users'));
+
     }
 
     /**
@@ -95,7 +100,21 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $this->validate($request, [
+            'title' => 'required|max:100',
+            'content' => 'required',
+            'category_id' => 'integer',
+            'user_id' => 'integer',
+            'status' => 'in:published,unpublished,draft',
+            'published_at' => 'date',
+        ]);
+
+       $post = Post::find($id);
+
+       $post->update($request->all()) ;
+
+        return redirect('admin/post')->with(['message' => 'success']);
     }
 
     /**

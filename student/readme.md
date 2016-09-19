@@ -98,3 +98,12 @@ des posts ayant des auteurs (posts et users)
  Implémentez le code de l'action update du controller PostController. Mettre en place la mise jour d'un post dans le CRUD.
  1/ admin/post/{1}/edit  connecter à PostController@edit method GET
  2/ admin/post/{1}  connecter à PostController@update method PUT
+ 
+ Exercice
+ Affichez l'ensemble des posts dans le backoffice pour l'action index.
+ 
+ admin/post connecté à l'action index => affichez l'ensemble des posts.
+ 
+ Présentez ces posts dans un tableau, avec respectivement les champs suivants:
+ 
+ statut | title | date de plublication | nom de la catégorie |  delete 

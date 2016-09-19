@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
@@ -33,5 +34,29 @@ class Post extends Model
         return $this->belongsToMany('App\Tag');
     }
 
+    public function getPublishedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format('Y-m-d');
+    }
 
+    public function getTitleAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    public function setCategoryIdAttribute($value)
+    {
+        if($value == 0)
+            $this->attributes['category_id'] = null;
+        else
+            $this->attributes['category_id'] = $value;
+    }
+
+    public function setUserIdAttribute($value)
+    {
+        if($value == 0)
+            $this->attributes['user_id'] = null;
+        else
+            $this->attributes['user_id'] = $value;
+    }
 }

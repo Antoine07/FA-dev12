@@ -2,9 +2,6 @@
 
 @section('content')
     <div class="container">
-        @if(Session::has('message'))
-            <p>{{ Session::get('message') }}</p>
-        @endif
         {{-- une autre manière d'écrire l'action action="action('PostController@store')" --}}
         <form action="{{url('admin/post') }}" method="POST" >
             {{ csrf_field() }}
