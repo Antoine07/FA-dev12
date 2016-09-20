@@ -112,3 +112,11 @@ des posts ayant des auteurs (posts et users)
  Rendre cliquable les titres de vos articles, ces liens conduisent vers la page de l'édition de l'article (@edit)
  
  - Ajoutez un bouton permettant la création d'un nouvel article (post) @create
+ 
+ Exercice
+ Ajoutez la gestion des tags dans le CRUD. Pour la création d'un post (checkbox multiple) et 
+ pour la mise à jour.
+ 
+ 
+ 
+ 

@@ -12,16 +12,13 @@
             <li><a href="{{url('admin', ['post'])}}">Admin des posts</a></li>
         </ul>
     </nav>
-   
 </header>
 <div class="main">
     <div class="grid-2">
         <div class="content">
-
             @if(Session::has('message'))
                 <p>{{ Session::get('message') }}</p>
             @endif
-
             @yield('content')
         </div>
         <div class="sidebar">

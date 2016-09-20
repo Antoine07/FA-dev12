@@ -1,8 +1,0 @@
-{
-    "selector": "source.ml",
-    "cmd": [
-    	"ocaml", "$file_name"
-    ],
-
-	"path" :"C:\\OCaml\\bin\\"
-}
