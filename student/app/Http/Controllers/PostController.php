@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\User;
 use Gate;
+use App\Tag;
+use App\User;
 use App\Post;
+use App\Category;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,7 @@ class PostController extends Controller
 
     public function __construct()
     {
+        //$this->middleware('auth', ['except'=>['index']]);
         $this->middleware('auth');
     }
 
@@ -38,8 +40,9 @@ class PostController extends Controller
     {
         $categories = Category::lists('title', 'id');
         $users = User::lists('name', 'id');
+        $tags = Tag::lists('name', 'id');
 
-        return view('admin.post.create', compact('categories', 'users'));
+        return view('admin.post.create', compact('categories', 'users', 'tags'));
     }
 
     /**
@@ -58,9 +61,12 @@ class PostController extends Controller
             'user_id' => 'integer',
             'status' => 'in:published,unpublished,draft',
             'published_at' => 'date',
+            'tags.*' => 'integer'
         ]);
 
-        Post::create($request->all());
+        $post = Post::create($request->all());
+
+        $post->tags()->attach($request->input('tags'));
 
         return redirect('admin/post')->with('message', 'ok');
 

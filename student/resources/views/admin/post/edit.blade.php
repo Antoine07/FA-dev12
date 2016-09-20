@@ -41,15 +41,14 @@
                     @forelse($users as $id=> $name)
                         <option {{check_select_edit($post->user, $id)}} value="{{$id}}">{{$name}}</option>
                     @empty
-                        <p>
-                            No
-                            users</p>
+                        <p>No users</p>
                     @endforelse
                 </select>
                 @if($errors->has('user_id'))
                     span {{$errors->first('user_id')}}
                 @endif
             </div>
+
             <div class="field">
                 <label for="status">Publié</label>
                 <input {{check_radio_edit($post->status, 'published')}} type="radio"

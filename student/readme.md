@@ -117,6 +117,27 @@ des posts ayant des auteurs (posts et users)
  Ajoutez la gestion des tags dans le CRUD. Pour la création d'un post (checkbox multiple) et 
  pour la mise à jour.
  
+ Exercice
+ Créez une vue login.blade.php avec les champs email et password. Vous devez égaletment
+ gérer les routes suivantes:
+ login et logout (pour se déloguer). Ces routes seront connectées aux actions du
+ Controller LoginController suivantes: login qui affichera et traitera les don.
+ l'action du formulaire de login aura pour URI: login
+ 
+ Indications:
+ Route::any('login', 'LoginController@login'); 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  
