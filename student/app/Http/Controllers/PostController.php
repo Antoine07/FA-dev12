@@ -54,6 +54,8 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
+        $request->user()->can('store-post');
+
         $this->validate($request, [
             'title' => 'required|max:100',
             'content' => 'required',
@@ -80,7 +82,12 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $post = Post::find($id);
+
+        $this->authorize('show-post', $post);
+
+        return view('admin.post.show', compact('post'));
     }
 
     /**
@@ -131,10 +138,15 @@ class PostController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        Post::destroy($id);
 
-        return redirect('admin/post')->with( ['message' => 'success delete']);
+        if($request->ajax()) {
+            Post::destroy($id);
+
+            return response(['message' => 'success delete'], 200);
+        }
+
+        //return redirect('admin/post')->with( ['message' => 'success delete']);
     }
 }

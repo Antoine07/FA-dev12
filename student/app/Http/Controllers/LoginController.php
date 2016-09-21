@@ -10,10 +10,14 @@ class LoginController extends Controller
     {
         if($request->isMethod('post'))
         {
+
+
             $this->validate($request, [
                 'email' => 'required|email',
                 'password' => 'required'
             ]);
+
+
             // récupère un tableau associatif email password
             $credentials = $request->only('email', 'password');
             //dd(Auth::attempt($credentials));

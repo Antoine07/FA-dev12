@@ -15,11 +15,8 @@ class FrontController extends Controller
 
     public function index()
     {
-        //$posts = [['title' => 'php7'],['title' => 'mysql']];
         $posts = Post::all();
         $students = Student::all();
-
-        //return view('home', ['posts' => $posts, 'students' => $students]);
 
         return view('front.home', compact('posts', 'students'));
     }

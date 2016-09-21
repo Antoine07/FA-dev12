@@ -10,23 +10,24 @@ class PostPolicy
 {
     use HandlesAuthorization;
 
-    public function __construct()
+    public function show(User $user, Post $post)
     {
+        return $user->owns($post);
     }
 
     public function create(User $user)
     {
-        return $user->isAdmin() ;
+        return  $user->isEditor()  ;
     }
 
     public function update(User $user, Post $post)
     {
-        return ($user->isAdmin() || $user->id === $post->user_id);
+        return  $user->owns($post)  ;
     }
 
     public function delete(User $user, Post $post)
     {
-        return ($user->isAdmin() || $user->id === $post->user_id);
+        return $user->owns($post);
     }
 
 }

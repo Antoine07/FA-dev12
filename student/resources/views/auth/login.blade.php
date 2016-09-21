@@ -3,6 +3,7 @@
 @section('content')
     <form action="{{url('login')}}" method="post">
         {{csrf_field()}}
+        @include('partials.flash')
         <p><label for="email">Email</label>
             <input type="text" name="email" value="{{old('email')}}">
             @if($errors->has('email')) <span>{{$errors->first('email')}}</span>@endif
@@ -11,7 +12,7 @@
             <input type="password" name="password">
             @if($errors->has('password')) <span>{{$errors->first('password')}}</span>@endif
         </p>
-        <p><input type="submit"></p>
+        <p><input class="waves-effect waves-light btn" type="submit"></p>
     </form>
 
 @endsection

@@ -33,4 +33,16 @@ class User extends Authenticatable
     {
         return $this->role === 'administrator';
     }
+
+    public function isEditor()
+    {
+        return in_array($this->role, ['administrator', 'editor']) ;
+    }
+
+    public function owns($related)
+    {
+        return ($this->id == $related->user_id  || $this->isAdmin());
+    }
+
+
 }
