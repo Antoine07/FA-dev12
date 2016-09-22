@@ -2,82 +2,98 @@
 
 @section('content')
     <div class="container">
-        {{-- une autre manière d'écrire l'action action="action('PostController@store')" --}}
-        <form action="{{url('admin/post') }}" method="POST" >
-            {{ csrf_field() }}
-             <div class="field">
-                 <label for="title">Titre:</label>
-                 <input type="text" name="title" value="{{old('title')}}">
-                 @if($errors->has('title'))
-                     span {{$errors->first('title')}}
-                 @endif
-                 <label for="slug">Slug:</label>
-                 <input type="text" name="slug" value="{{old('slug')}}">
-             </div>
-            <div class="field">
-                <label for="category_id">Catégorie</label>
-                <select name="category_id" >
-                    <option value="0" selected>Non catégorisé</option>
-                    @forelse($categories as $id=> $name)
-                        <option {{check_select('category_id', $id)}}  value="{{$id}}">{{$name}}</option>
-                    @empty
-                        <p>No users</p>
-                    @endforelse
-                </select>
-            </div>
-            <div class="field">
-                <label for="user_id">Auteur</label>
-                <select name="user_id" >
-                    <option value="0" >Anonymous</option>
-                    @forelse($users as $id=> $name)
-                        <option {{check_select('user_id', $id)}} value="{{$id}}">{{$name}}</option>
-                    @empty
-                        <p>No users</p>
-                    @endforelse
-                </select>
-                @if($errors->has('user_id'))
-                    span {{$errors->first('user_id')}}
-                @endif
-            </div>
-            <h2>Mots clés</h2>
-            <ul class="admin__tags">
-                @forelse($tags as $id => $name)
-                    <li>
-                        <label for="{{$id}}-tag">{{$name}}</label>
-                        <input id="{{$id}}-tag" type="checkbox" name="tags[]" value="{{$id}}">
-                    </li>
-                @empty
-                    aucun mot clé
-                @endforelse
-            <div class="field">
-                <label for="status">Publié</label>
-                <input {{check_radio('status', 'published')}} type="radio" name="status" value="published">
-                <label for="status">dépublié</label>
-                <input {{check_radio('status', 'unpublished' , 'selected' )}} type="radio" name="status" value="unpublished">
-                <label for="status">Brouillon</label>
-                <input {{check_radio('status', 'draft')}} type="radio" name="status" value="draft">
-            </div>
-            <div class="field">
-                <h2>Date de publication</h2>
-                <input type="date" name="published_at" value="{{old('published_at')}}">
-            </div>
-            <div class="field">
-                <label for="content"><h2>Contenu</h2></label>
-                <textarea name="content" id="" cols="30" rows="10">{{old('content')}}</textarea>
-                @if($errors->has('content'))
-                    span {{$errors->first('content')}}
-                @endif
-            </div>
-            <input type="submit" class="submit">
-        </form>
+        <div class="row">
+            <form class="col s12 m12" action="{{url('admin', 'post')}}" method="post">
+                {{ csrf_field() }}
+                <div class="field input-field col s12 m6">
+                    <input type="text" name="title" value="{{old('title')}}">
+                    <label for="title">Titre:</label>
+                    @if($errors->has('title'))
+                        {{$errors->first('title')}}
+                    @endif
+                </div>
+                <div class="input-field col s12 m6">
+                    <input type="text" name="slug" value="{{old('slug')}}">
+                    <label for="slug">Slug:</label>
+                </div>
+                <div class="field input-field col s12">
+                    <label for="content">Contenu</label>
+                    <textarea name="content" id="content" class="materialize-textarea" >{{old('content')}}</textarea>
+                    @if($errors->has('content'))
+                        <span>{{$errors->first('content')}}</span>
+                    @endif
+                </div>
+                <div class="input-field col s12">
+                    <select name="category_id" id="category_id" >
+                        <option value="0">Non catégorisé</option>
+                        @forelse($categories as $id=> $name)
+                            <option  value="{{$id}}">{{$name}}</option>
+                        @empty
+                        @endforelse
+                    </select>
+                    <label for="category_id">Catégorie</label>
+                </div>
+                <div class="input-field col s12 input-margin">
+                    <span class="title">Mots clés</span>
+                    <p>
+                        @foreach($tags as $id => $name)
+                            <input name="tags[]" class="filled-in" id="tag{{$id}}" value="{{$id}}" type="checkbox" >
+                            <label for="tag{{$id}}">{{$name}}</label>
+                        @endforeach
+                    </p>
+                </div>
+                <div class="input-field col s12">
+                    <select name="user_id" id="user_id" >
+                        <option value="0">Anonymous</option>
+                        @forelse($users as $id=> $name)
+                            <option {{check_select('user', $id)}}  value="{{$id}}">{{$name}}</option>
+                        @empty
+                        @endforelse
+                    </select>
+                    <label for="user_id">Auteur</label>
+                </div>
+                <div class="input-field col s12">
+                    <input class="datepicker" type="date" name="published_at" id="published_at" value="{{old('published_at')}}">
+                    <label for="published_at">Date de publication</label>
+                </div>
+                <div class="input-field col s12 input-margin">
+                    <input {{check_radio('status', 'published')}} type="radio" name="status" value="published" id="published" >
+                    <label for="published">Publié</label>
+                    <input {{check_radio('status', 'unpublished')}} type="radio" name="status" value="unpublished" id="unpublished" >
+                    <label for="unpublished">Dépublié</label>
+                    <input {{check_radio('status', 'draft')}} type="radio" name="status" id="draft" value="draft" >
+                    <label for="draft">Brouillon</label>
+                </div>
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Image</span>
+                        <input type="file" name="thumbnail">
+                        @if($errors->has('thumbnail'))
+                            <span>{{$errors->first('thumbnail')}}</span>
+                        @endif
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <div class="input-field col s12">
+                    <p><input class="btn waves-effect waves-light" type="submit" ></p>
+                </div>
+            </form>
+        </div>
     </div>
 @endsection
 
-@section('sidebar')
-    @parent
-    <nav>
-        <li>Home</li>
-    </nav>
+@section('script')
+    <script>
+
+        $('select').material_select()
+
+        $('.datepicker').pickadate({
+            format: 'yyyy-m-d'
+        })
+    </script>
+
 @endsection
 
 

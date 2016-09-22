@@ -63,12 +63,29 @@ class PostController extends Controller
             'user_id' => 'integer',
             'status' => 'in:published,unpublished,draft',
             'published_at' => 'date',
-            'tags.*' => 'integer'
+            'tags.*' => 'integer',
+            'thumbnail' => 'image|max:2000'
         ]);
 
         $post = Post::create($request->all());
 
         $post->tags()->attach($request->input('tags'));
+
+        $im = $request->file('thumbnail');
+        if(!empty($im))
+        {
+            $ext = $im->getClientOriginalExtension();
+            $uri = str_random(12). '.'.$ext;
+
+            $post->thumbnail = $uri;
+
+            $im->move(env('UPLOAD_PATH', './images'), $uri );
+
+            $post->save(); // mise à jour dans la base de données
+        }
+
+
+
 
         return redirect('admin/post')->with('message', 'ok');
 

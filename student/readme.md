@@ -131,6 +131,8 @@ des posts ayant des auteurs (posts et users)
  create.blade.php 
  
  ajouter un champ file et soyez attentif, vérifiez que votre formulaire est bien capable d'envoyer des fichiers ...
+ Je vous rappelle le code 
+ form enctype="multipart/form-data" method="post"
  
  Exercice
  
@@ -141,6 +143,13 @@ des posts ayant des auteurs (posts et users)
  		// ...
  		'thumbnail' => 'image|max:2000'
  	]);
+ 
+ Exercice
+ Faire l'upload d'image pour la partie update, avec les contraintes suivantes:
+ 1/ Si aucune image présente pour un post => affiche le champ file
+ 2/ Si il y a une image, ajouter un champ supprimer l'image et le champ file pour le remplacement de l'image
+ 
+ 
  
  
  
