@@ -20,16 +20,15 @@
 </nav>
 <div class="container">
     <div class="row content">
-        <div class="col btn-led s12 m3 content__sidebar">1</div>
-        <div class="col btn-led s12 m9 content__post">
+        @include('partials.flash')
+        <div class="col btn-led s12 m12 content__post">
             @yield('content')
         </div>
     </div>
 </div>
-<footer>
+<footer></footer>
 @include('partials.scripts')
 @section('script')
 @show
-</footer>
 </body>
 </html>

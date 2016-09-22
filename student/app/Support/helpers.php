@@ -8,6 +8,8 @@ if (!function_exists('check_radio')) {
 
         if (!is_null($default) && empty($old)) return 'checked';
 
+        if(empty($old) && $value == $name ) return 'checked';
+
         if (old($name) == $value) return 'checked';
     }
 
@@ -47,6 +49,18 @@ if (!function_exists('check_select_edit')) {
 
 }
 
+if (!function_exists('color_status')) {
+
+    function color_status($status)
+    {
+
+        if($status == 'published') return 'green darken-1 status';
+        if($status == 'unpublished') return 'red darken-1 status';
+        if($status == 'draft') return 'yellow lighten-3 status';
+
+    }
+
+}
 
 
 

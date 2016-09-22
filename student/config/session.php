@@ -29,9 +29,9 @@ return [
     |
     */
 
-    'lifetime' => 120,
+    'lifetime' => env('LIFETIME', 120),
 
-    'expire_on_close' => false,
+    'expire_on_close' => env('EXPIRE_ON_CLOSE', true),
 
     /*
     |--------------------------------------------------------------------------

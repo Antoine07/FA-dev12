@@ -42,7 +42,7 @@ class Post extends Model
     public function getTitleAttribute($value)
     {
         return ucfirst($value);
-    }
+}
 
     public function setCategoryIdAttribute($value)
     {
@@ -54,9 +54,19 @@ class Post extends Model
 
     public function setUserIdAttribute($value)
     {
-        if($value == 0)
+    if($value == 0)
             $this->attributes['user_id'] = null;
         else
             $this->attributes['user_id'] = $value;
+    }
+
+    public function hasTag($tagId)
+    {
+        foreach($this->tags as $tag)
+        {
+            if($tag->id == $tagId) return true;
+        }
+
+        return false;
     }
 }

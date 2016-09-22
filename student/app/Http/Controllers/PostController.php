@@ -101,8 +101,9 @@ class PostController extends Controller
         $post = Post::find($id);
         $categories = Category::lists('title', 'id');
         $users = User::lists('name', 'id');
+        $tags = Tag::lists('name', 'id');
 
-        return view('admin.post.edit', compact('post', 'categories', 'users'));
+        return view('admin.post.edit', compact('post', 'categories', 'users', 'tags'));
 
     }
 
@@ -123,11 +124,16 @@ class PostController extends Controller
             'user_id' => 'integer',
             'status' => 'in:published,unpublished,draft',
             'published_at' => 'date',
+            'tags.*' => 'integer'
         ]);
 
         $post = Post::find($id);
 
         $post->update($request->all());
+
+        $tags = empty($request->input('tags'))? [] : $request->input('tags');
+
+        $post->tags()->sync($tags);
 
         return redirect('admin/post')->with(['message' => 'success']);
     }

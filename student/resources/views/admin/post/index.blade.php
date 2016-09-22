@@ -16,7 +16,7 @@
         </thead>
         @forelse($posts as $post)
         <tr>
-            <td>{{$post->status}}</td>
+            <td><button class="btn {{color_status($post->status)}}">{{$post->status}}</button></td>
             <td>
                 @can('update', $post)
                 <a href="{{url('admin', ['post', $post->id, 'edit'])}}"><i class="material-icons">mode_edit</i></a>

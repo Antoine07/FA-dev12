@@ -11,6 +11,10 @@
         <p><label for="password">Password</label>
             <input type="password" name="password">
             @if($errors->has('password')) <span>{{$errors->first('password')}}</span>@endif
+        <p>
+            <input type="checkbox" class="filled-in" id="filled-in-box" value="remember" />
+            <label for="filled-in-box">Se souvenir de moi ?</label>
+        </p>
         </p>
         <p><input class="waves-effect waves-light btn" type="submit"></p>
     </form>

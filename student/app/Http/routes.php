@@ -5,7 +5,6 @@ Route::pattern('slug', '[a-zA-Z\-]+');   // + 1, N
 
 Route::get('/', 'FrontController@index')->name('home');
 
-
 Route::get('/post/{id}/{slug?}', 'FrontController@show');
 Route::get('/category/{id}/{slug?}', 'FrontController@showPostByCat');
 Route::get('/student/{id}', 'FrontController@showStudent');

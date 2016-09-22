@@ -1,18 +1,8 @@
 @import "materialize/materialize";
 
-$color: red;
-$color-hover: green;
-
-nav{
-  li{
-    a{
-      color: $color;
-      cursor: pointer;
-      &:hover{
-        color: $color-hover;
-      }
-    }
-  }
+.input-margin{
+  margin-bottom: 2rem;
 }
-
-body{ color: $color; }
+.status{
+  @extend .blue-text, .text-lighten-4;
+}

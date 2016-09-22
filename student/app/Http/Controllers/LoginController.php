@@ -10,21 +10,20 @@ class LoginController extends Controller
     {
         if($request->isMethod('post'))
         {
-
-
             $this->validate($request, [
                 'email' => 'required|email',
-                'password' => 'required'
+                'password' => 'required',
+                'remember' => 'in:remember'
             ]);
 
-
-            // récupère un tableau associatif email password
             $credentials = $request->only('email', 'password');
-            //dd(Auth::attempt($credentials));
-            if(Auth::attempt($credentials))
+
+            $remember = false;
+
+            if(!empty($request->input('remember'))) $remember = true;
+
+            if(Auth::attempt($credentials, $remember))
             {
-                // ici on passé avec succès authentification (middleware auth)
-                // et donc on a accès à nos routes protégées
                 return redirect('admin/post')->with(['message'=>'success']);
             }else{
                 return back()
@@ -37,6 +36,7 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('/')->with(['message' =>'succes logout']);
+
+        return redirect()->home()->with(['message' =>'succes logout']);
     }
 }
