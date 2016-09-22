@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Gate;
+use File;
 use App\Tag;
 use App\User;
 use App\Post;
@@ -10,11 +11,9 @@ use App\Category;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
-{
+class PostController extends Controller {
 
-    public function __construct()
-    {
+    public function __construct() {
         //$this->middleware('auth', ['except'=>['index']]);
         $this->middleware('auth');
     }
@@ -24,8 +23,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         $posts = Post::all();
 
         return view('admin.post.index', compact('posts'));
@@ -36,8 +34,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         $categories = Category::lists('title', 'id');
         $users = User::lists('name', 'id');
         $tags = Tag::lists('name', 'id');
@@ -51,41 +48,26 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
 
         $request->user()->can('store-post');
 
         $this->validate($request, [
-            'title' => 'required|max:100',
-            'content' => 'required',
-            'category_id' => 'integer',
-            'user_id' => 'integer',
-            'status' => 'in:published,unpublished,draft',
-            'published_at' => 'date',
-            'tags.*' => 'integer',
-            'thumbnail' => 'image|max:2000'
+                'title'        => 'required|max:100',
+                'content'      => 'required',
+                'category_id'  => 'integer',
+                'user_id'      => 'integer',
+                'status'       => 'in:published,unpublished,draft',
+                'published_at' => 'date',
+                'tags.*'       => 'integer',
+                'thumbnail'    => 'image'
         ]);
 
         $post = Post::create($request->all());
 
         $post->tags()->attach($request->input('tags'));
 
-        $im = $request->file('thumbnail');
-        if(!empty($im))
-        {
-            $ext = $im->getClientOriginalExtension();
-            $uri = str_random(12). '.'.$ext;
-
-            $post->thumbnail = $uri;
-
-            $im->move(env('UPLOAD_PATH', './images'), $uri );
-
-            $post->save(); // mise à jour dans la base de données
-        }
-
-
-
+        $this->upload($request->file('thumbnail'), $post);
 
         return redirect('admin/post')->with('message', 'ok');
 
@@ -97,8 +79,7 @@ class PostController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
 
         $post = Post::find($id);
 
@@ -113,8 +94,7 @@ class PostController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $post = Post::find($id);
         $categories = Category::lists('title', 'id');
         $users = User::lists('name', 'id');
@@ -131,26 +111,36 @@ class PostController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
 
         $this->validate($request, [
-            'title' => 'required|max:100',
-            'content' => 'required',
-            'category_id' => 'integer',
-            'user_id' => 'integer',
-            'status' => 'in:published,unpublished,draft',
-            'published_at' => 'date',
-            'tags.*' => 'integer'
+                'title'        => 'required|max:100',
+                'content'      => 'required',
+                'category_id'  => 'integer',
+                'user_id'      => 'integer',
+                'status'       => 'in:published,unpublished,draft',
+                'published_at' => 'date',
+                'tags.*'       => 'integer',
+                'delete_image' => 'in:delete',
+                'thumbnail'    => 'mimes:jpeg,bmp,png,jpg'
         ]);
 
         $post = Post::find($id);
 
         $post->update($request->all());
 
-        $tags = empty($request->input('tags'))? [] : $request->input('tags');
+        $tags = empty($request->input('tags')) ? [] : $request->input('tags');
 
         $post->tags()->sync($tags);
+
+        if (!empty($request->delete_image)) {
+            $this->deleteImage($post->thumbnail);
+            $post->thumbnail = null;
+
+            $post->save();
+        }
+
+        $this->upload($request->file('thumbnail'), $post);
 
         return redirect('admin/post')->with(['message' => 'success']);
     }
@@ -161,15 +151,44 @@ class PostController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
-    {
+    public function destroy(Request $request, $id) {
 
-        if($request->ajax()) {
-            Post::destroy($id);
+        if ($request->ajax()) {
+            $post = Post::findOrFail($id);
+
+            $this->deleteImage($post->thumbnail);
+
+            $post->delete();
 
             return response(['message' => 'success delete'], 200);
         }
 
         //return redirect('admin/post')->with( ['message' => 'success delete']);
+    }
+
+    private function upload($im, Post $post) {
+
+        if (!empty($im)) {
+            $ext = $im->getClientOriginalExtension();
+            $uri = str_random(12) . '.' . $ext;
+
+            $post->thumbnail = $uri;
+
+            $im->move(env('UPLOAD_PATH', './images'), $uri);
+
+            $post->save(); // mise à jour dans la base de données
+        }
+    }
+
+    private function deleteImage($uri) {
+        $fileName = public_path(env('UPLOAD_PATH', './images')) . '/' . $uri;
+
+        if (File::exists($fileName)) {
+            File::delete($fileName);
+
+            return true;
+        }
+
+        return false;
     }
 }

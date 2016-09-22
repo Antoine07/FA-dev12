@@ -135,7 +135,6 @@ des posts ayant des auteurs (posts et users)
  form enctype="multipart/form-data" method="post"
  
  Exercice
- 
  Côté 
  méthode store, premièrement vérifiez que l'on a bien un fichier qui est une image dans les validates 
  

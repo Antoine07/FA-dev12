@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
     <div class="row">
-        <form class="col s12 m12" action="{{url('admin',['post', $post->id, ])}}" method="post">
+        <form class="col s12 m12" action="{{url('admin',['post', $post->id, ])}}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             {{method_field('put')}}
             <div class="field input-field col s12 m6">
@@ -65,6 +65,25 @@
                 <input {{check_radio('draft', $post->status)}} type="radio" name="status" id="draft" value="draft" >
                 <label for="draft">Brouillon</label>
             </div>
+            @if(!empty($post->thumbnail))
+                <div class="file-field input-field col s12 input-margin">
+                <img src="{{url('images', $post->thumbnail)}}" alt="">
+                <input type="checkbox" name="delete_image" class="filled-in" id="delete_image" value="delete" >
+                <label for="delete_image">Supprimer l'image</label>
+                </div>
+            @endif
+            <div class="file-field input-field col s12 input-margin">
+                <div class="btn">
+                    <span>Image</span>
+                    <input type="file" name="thumbnail">
+                    @if($errors->has('thumbnail'))
+                        {{$errors->first('thumbnail')}}
+                    @endif
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
             <div class="input-field col s12">
                 <p><input class="btn waves-effect waves-light" type="submit" ></p>
             </div>
@@ -79,7 +98,7 @@
     $('select').material_select()
 
     $('.datepicker').pickadate({
-        format: 'yyyy-m-d'
+        format: 'd-m-yyyy'
     })
 </script>
 

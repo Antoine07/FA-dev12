@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <form class="col s12 m12" action="{{url('admin', 'post')}}" method="post">
+            <form class="col s12 m12" action="{{url('admin', 'post')}}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="field input-field col s12 m6">
                     <input type="text" name="title" value="{{old('title')}}">
@@ -37,7 +37,7 @@
                     <span class="title">Mots clés</span>
                     <p>
                         @foreach($tags as $id => $name)
-                            <input name="tags[]" class="filled-in" id="tag{{$id}}" value="{{$id}}" type="checkbox" >
+                            <input {{check_box(old('tags'), $id)}} name="tags[]" class="filled-in" id="tag{{$id}}" value="{{$id}}" type="checkbox" >
                             <label for="tag{{$id}}">{{$name}}</label>
                         @endforeach
                     </p>
@@ -64,12 +64,12 @@
                     <input {{check_radio('status', 'draft')}} type="radio" name="status" id="draft" value="draft" >
                     <label for="draft">Brouillon</label>
                 </div>
-                <div class="file-field input-field">
+                <div class="file-field input-field col s12 input-margin">
                     <div class="btn">
                         <span>Image</span>
                         <input type="file" name="thumbnail">
                         @if($errors->has('thumbnail'))
-                            <span>{{$errors->first('thumbnail')}}</span>
+                            {{$errors->first('thumbnail')}}
                         @endif
                     </div>
                     <div class="file-path-wrapper">
