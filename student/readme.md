@@ -127,9 +127,20 @@ des posts ayant des auteurs (posts et users)
  Indications:
  Route::any('login', 'LoginController@login'); 
  
+ Exercice
+ create.blade.php 
  
+ ajouter un champ file et soyez attentif, vérifiez que votre formulaire est bien capable d'envoyer des fichiers ...
  
+ Exercice
  
+ Côté 
+ méthode store, premièrement vérifiez que l'on a bien un fichier qui est une image dans les validates 
+ 
+ 	$this->validate($request, [
+ 		// ...
+ 		'thumbnail' => 'image|max:2000'
+ 	]);
  
  
  
