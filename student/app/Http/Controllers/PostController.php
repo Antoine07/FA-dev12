@@ -24,7 +24,7 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $posts = Post::all();
+        $posts = Post::with('category', 'tags')->paginate(10);
 
         return view('admin.post.index', compact('posts'));
     }
@@ -81,7 +81,7 @@ class PostController extends Controller {
      */
     public function show($id) {
 
-        $post = Post::find($id);
+        $post = Post::with('category', 'tags')->findOrFail($id);
 
         $this->authorize('show-post', $post);
 
@@ -171,6 +171,8 @@ class PostController extends Controller {
         if (!empty($im)) {
             $ext = $im->getClientOriginalExtension();
             $uri = str_random(12) . '.' . $ext;
+
+            $this->deleteImage($post->thumbnail);
 
             $post->thumbnail = $uri;
 

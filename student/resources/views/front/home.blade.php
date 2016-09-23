@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+    <h1>123</h1>
 @if(count($posts)>0)
     @foreach($posts as $post)
         <div class="row post">

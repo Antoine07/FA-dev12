@@ -76,8 +76,10 @@
                         <input class="file-path validate" type="text">
                     </div>
                 </div>
-                <div class="input-field col s12">
-                    <p><input class="btn waves-effect waves-light" type="submit" ></p>
+                <div class="row">
+                    <div class="input-field col s12 input-margin">
+                        <p><input class="btn waves-effect waves-light" type="submit" ></p>
+                    </div>
                 </div>
             </form>
         </div>

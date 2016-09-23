@@ -149,6 +149,11 @@ des posts ayant des auteurs (posts et users)
  2/ Si il y a une image, ajouter un champ supprimer l'image et le champ file pour le remplacement de l'image
  
  
+Exercice
+
+Faites le nécessaire pour qu'une fois que l'on ait supprimé un post l'image qui est peut être associée
+le soit également.
+Pour terminer le CRUD, refactoriser votre code, il y a des répétitions ...
  
  
  

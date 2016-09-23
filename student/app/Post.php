@@ -40,14 +40,10 @@ class Post extends Model
 
     public function setPublishedAtAttribute($value)
     {
-
         $date = Carbon::parse($value)->format('Y-m-d');
-
         $now = Carbon::now();
-
-        Carbon::parse($date)->addHours($now->hour)->addMinutes($now->minute);
-
-        $this->attributes['published_at'] = Carbon::parse($value)->format('Y-m-d');
+        $date = Carbon::parse($date)->addHours($now->hour)->addMinutes($now->minute);
+        $this->attributes['published_at'] = $date->format('Y-m-d H:i');
     }
 
     public function getTitleAttribute($value)

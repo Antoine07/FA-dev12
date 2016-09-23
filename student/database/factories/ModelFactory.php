@@ -13,8 +13,6 @@
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
 
-
-
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,
@@ -24,6 +22,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Student::class, function (Faker\Generator $faker) {
+
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,
@@ -41,6 +40,6 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
         'content' => $faker->safeEmail,
         'user_id' => (rand(1,0)==1)? rand(1,10) : NULL,
         'status' =>(rand(0,1))? 'published' : ( (rand(0,1))? 'unpublished' : 'draft'),
-        'published_at' =>$faker->dateTime,
+        'published_at' =>\Carbon\Carbon::now()->format('y-m-d'),
     ];
 });
