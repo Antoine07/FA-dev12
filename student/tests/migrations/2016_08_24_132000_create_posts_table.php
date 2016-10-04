@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->unsignedInteger('user_id')->nullable();
             $table->text('content');
             $table->dateTime('published_at');
-            $table->enum('status', ['published', 'unpublished', 'draft']);
+            $table->enum('status', ['published', 'unpublished', 'draft'])->default('unpublished');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('SET NULL');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
             $table->timestamps();

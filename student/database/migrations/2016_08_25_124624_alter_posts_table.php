@@ -13,7 +13,7 @@ class AlterPostsTable extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->string('thumbnail')->after('content');
+            $table->string('thumbnail')->after('content')->nullable();
         });
     }
 

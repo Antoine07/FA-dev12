@@ -67,6 +67,14 @@ class Post extends Model
             $this->attributes['user_id'] = $value;
     }
 
+    public function setSlugAttribute($value)
+    {
+        if($value == 0)
+            $this->attributes['slug'] = (empty($this->title)? str_slug($this->title) : 'slug');
+        else
+            $this->attributes['slug'] = str_slug($value);
+    }
+
     public function hasTag($tagId)
     {
         foreach($this->tags as $tag)
